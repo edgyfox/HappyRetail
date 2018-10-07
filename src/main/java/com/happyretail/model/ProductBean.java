@@ -14,7 +14,7 @@ public class ProductBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="prodId")
-	private String prodId;
+	private int prodId;
 	
 	@NotNull(message="Field should not be empty")
 	@Column(name="prodCat")
@@ -35,7 +35,7 @@ public class ProductBean {
 	public ProductBean() {
 		
 	}
-	public ProductBean(String prodId, String prodCat, String prodBrand, String prodName, double prodPrice) {
+	public ProductBean(int prodId, String prodCat, String prodBrand, String prodName, double prodPrice) {
 		super();
 		this.prodId = prodId;
 		this.prodCat = prodCat;
@@ -43,10 +43,10 @@ public class ProductBean {
 		this.prodName = prodName;
 		this.prodPrice = prodPrice;
 	}
-	public String getProdId() {
+	public int getProdId() {
 		return prodId;
 	}
-	public void setProdId(String prodId) {
+	public void setProdId(int prodId) {
 		this.prodId = prodId;
 	}
 	public String getProdCat() {

@@ -16,7 +16,7 @@ public class CustomerBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="custId")
-	private String custId;
+	private int custId;
 	
 	@NotNull(message="Field should not be empty")
 	@Size(min=2,message="Name should have at least two characters")
@@ -42,7 +42,7 @@ public class CustomerBean {
 	{
 		
 	}
-	public CustomerBean(String custId, String custName, String custEmail, String custPass, String custPhone) {
+	public CustomerBean(int custId, String custName, String custEmail, String custPass, String custPhone) {
 		super();
 		this.custId = custId;
 		this.custName = custName;
@@ -50,10 +50,10 @@ public class CustomerBean {
 		this.custPass = custPass;
 		this.custPhone = custPhone;
 	}
-	public String getCustId() {
+	public int getCustId() {
 		return custId;
 	}
-	public void setCustId(String custId) {
+	public void setCustId(int custId) {
 		this.custId = custId;
 	}
 	public String getCustName() {
