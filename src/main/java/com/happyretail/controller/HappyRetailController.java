@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.happyretail.model.CustomerBean;
 import com.happyretail.model.ProductBean;
+import com.happyretail.service.CustomerService;
 import com.happyretail.service.ProductService;
 
 @Controller("/")
@@ -22,6 +24,9 @@ public class HappyRetailController {
 	
 	@Autowired
 	ProductService service;
+	
+	@Autowired
+	CustomerService custService;
 	
 	@RequestMapping("/")
 	public String redirectToIndex()
@@ -49,5 +54,27 @@ public class HappyRetailController {
 	{
 		service.insertProduct(product);
 		return new ModelAndView("redirect:/showProducts", "model", model);
+	}
+	
+	@RequestMapping("/showCustomers")
+	public String redirectToCustomers(Model model)
+	{
+		List<CustomerBean> customers = custService.getCustomers();
+		model.addAttribute("customers", customers);
+		return "showCustomers";
+	}
+	
+	@RequestMapping("/addCustomer")
+	public String redirectToNewCustomerForm(Model model)
+	{
+		model.addAttribute("customer",new CustomerBean());
+		return "customerForm";
+	}
+	
+	@RequestMapping("/readCustomerForm")
+	public ModelAndView readAndShowCustomers(@ModelAttribute("customer") CustomerBean customer, Model model)
+	{
+		custService.addCustomer(customer);
+		return new ModelAndView("redirect:/showCustomers","model",model);
 	}
 }

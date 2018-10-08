@@ -6,25 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.happyretail.dao.RetailDao;
-import com.happyretail.model.ProductBean;
+import com.happyretail.model.CustomerBean;
 
 @Service
-public class ProductServiceImplement implements ProductService {
+public class CustomerServiceImplement implements CustomerService {
 
 	@Autowired
 	RetailDao dao;
 	@Override
-	public List<ProductBean> getProducts() {
-		return dao.getProducts();
+	public List<CustomerBean> getCustomers() {
+		return dao.getCustomers();
 	}
 
 	@Override
-	public boolean insertProduct(ProductBean pb) {
-		int success = dao.insertProduct(pb);
+	public boolean addCustomer(CustomerBean cb) {
+		int success = dao.insertCustomer(cb);
 		if(success==0)
+		{
 			return false;
+		}
 		else
+		{
 			return true;
+		}
 	}
 
 }

@@ -42,7 +42,7 @@ public class CustomerBean {
 	{
 		
 	}
-	public CustomerBean(int custId, String custName, String custEmail, String custPass, String custPhone) {
+	public CustomerBean(int custId, String custEmail, String custName, String custPass, String custPhone) {
 		super();
 		this.custId = custId;
 		this.custName = custName;

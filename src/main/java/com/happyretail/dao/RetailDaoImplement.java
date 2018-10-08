@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.happyretail.model.CustomerBean;
 import com.happyretail.model.ProductBean;
 
 @Repository
@@ -28,6 +29,24 @@ public class RetailDaoImplement implements RetailDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int insertProduct(ProductBean pb) {
+		String query = "insert into products values(?,?,?,?,?);";
+		return template.update(query, pb.getProdId(),pb.getProdCat(),pb.getProdBrand(),pb.getProdName(),pb.getProdPrice());
+	}
+
+	@Override
+	public List<CustomerBean> getCustomers() {
+		String query = "select * from customers";
+		return template.query(query, new CustomerMapper());
+	}
+
+	@Override
+	public int insertCustomer(CustomerBean cb) {
+		String query = "insert into customers values(?,?,?,?,?)";
+		return template.update(query,cb.getCustId(),cb.getCustEmail(),cb.getCustName(),cb.getCustPass(),cb.getCustPhone());
+	}
 	
 	private class ProductMapper implements RowMapper<ProductBean>
 	{
@@ -43,11 +62,20 @@ public class RetailDaoImplement implements RetailDao {
 		}
 		
 	}
+	
+	private class CustomerMapper implements RowMapper<CustomerBean>
+	{
 
-	@Override
-	public int insertProduct(ProductBean pb) {
-		String query = "insert into products values(?,?,?,?,?);";
-		return template.update(query, pb.getProdId(),pb.getProdCat(),pb.getProdBrand(),pb.getProdName(),pb.getProdPrice());
+		@Override
+		public CustomerBean mapRow(ResultSet res, int row) throws SQLException {
+			CustomerBean cb = new CustomerBean(res.getInt(1),
+								res.getString(2),
+								res.getString(3),
+								res.getString(4),
+								res.getString(5));
+			return cb;
+		}
+		
 	}
 
 }
