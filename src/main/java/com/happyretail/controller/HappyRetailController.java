@@ -5,10 +5,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,11 @@ import com.happyretail.model.ProductBean;
 import com.happyretail.service.CustomerService;
 import com.happyretail.service.ProductService;
 
+/**
+ * Default-controller with URI mapping = "/"
+ * @author Argha Nandan
+ *
+ */
 @Controller("/")
 public class HappyRetailController {
 	
@@ -28,12 +35,21 @@ public class HappyRetailController {
 	@Autowired
 	CustomerService custService;
 	
+	/**
+	 * Redirecting to index.jsp
+	 * return view
+	 */
 	@RequestMapping("/")
 	public String redirectToIndex()
 	{
 		return "index";
 	}
 	
+	/**
+	 * Fetch and show all product details in showProducts.jsp
+	 * @param model
+	 * @return view
+	 */
 	@RequestMapping(value="/showProducts")
 	public String redirectToProducts(Model model)
 	{
@@ -42,6 +58,11 @@ public class HappyRetailController {
 		return "showProducts";
 	}
 	
+	/**
+	 * Redirect to productForm.jsp to insert new product.
+	 * @param model
+	 * @return view
+	 */
 	@RequestMapping(value="/addProduct")
 	public String redirectToNewProductForm(Model model)
 	{
@@ -49,13 +70,28 @@ public class HappyRetailController {
 		return "productForm";
 	}
 	
+	/**
+	 * Read product form and insert into DB, redirect to "/showProducts" URI.
+	 * @param product
+	 * @param model
+	 * @return view
+	 */
 	@PostMapping(value="/readForm")
-	public ModelAndView readAndShowProducts(@ModelAttribute("product") ProductBean product,Model model)
+	public String readAndShowProducts(@Valid@ModelAttribute("product") ProductBean product,Model model, Errors errs)
 	{
+		if(errs.hasErrors())
+		{
+			return "productForm";
+		}
 		service.insertProduct(product);
-		return new ModelAndView("redirect:/showProducts", "model", model);
+		return "redirect:/showProducts";
 	}
 	
+	/**
+	 * fetch customers and redirect to showCustomers.jsp
+	 * @param model
+	 * @return view
+	 */
 	@RequestMapping("/showCustomers")
 	public String redirectToCustomers(Model model)
 	{
@@ -64,6 +100,11 @@ public class HappyRetailController {
 		return "showCustomers";
 	}
 	
+	/**
+	 * redirect to addCustomer.jsp to add customer
+	 * @param model
+	 * @return view
+	 */
 	@RequestMapping("/addCustomer")
 	public String redirectToNewCustomerForm(Model model)
 	{
@@ -71,6 +112,11 @@ public class HappyRetailController {
 		return "customerForm";
 	}
 	
+	/**
+	 * read customer form and redirect to "/showCustomer" URI.
+	 * Parameteres: CustomerBean object, Model object.
+	 * Returns: ModelAndView.
+	 */
 	@RequestMapping("/readCustomerForm")
 	public ModelAndView readAndShowCustomers(@ModelAttribute("customer") CustomerBean customer, Model model)
 	{

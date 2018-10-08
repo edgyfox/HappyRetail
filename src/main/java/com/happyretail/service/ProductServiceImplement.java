@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.happyretail.dao.RetailDao;
 import com.happyretail.model.ProductBean;
 
+/**
+ * Implements the ProductService interface
+ * @author Argha Nandan
+ *
+ */
 @Service
 public class ProductServiceImplement implements ProductService {
 
@@ -19,8 +24,8 @@ public class ProductServiceImplement implements ProductService {
 	}
 
 	@Override
-	public boolean insertProduct(ProductBean pb) {
-		int success = dao.insertProduct(pb);
+	public boolean insertProduct(ProductBean productBean) {
+		int success = dao.insertProduct(productBean);
 		if(success==0)
 			return false;
 		else

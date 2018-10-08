@@ -12,6 +12,11 @@ import org.springframework.stereotype.Repository;
 import com.happyretail.model.CustomerBean;
 import com.happyretail.model.ProductBean;
 
+/**
+ * Implements the RetailDao interface
+ * @author Argha Nandan
+ *
+ */
 @Repository
 public class RetailDaoImplement implements RetailDao {
 
@@ -25,15 +30,17 @@ public class RetailDaoImplement implements RetailDao {
 	}
 
 	@Override
-	public ProductBean getProductById(ProductBean pb) {
+	public ProductBean getProductById(ProductBean productBean) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insertProduct(ProductBean pb) {
+	public int insertProduct(ProductBean productBean) {
 		String query = "insert into products values(?,?,?,?,?);";
-		return template.update(query, pb.getProdId(),pb.getProdCat(),pb.getProdBrand(),pb.getProdName(),pb.getProdPrice());
+		return template.update(query, productBean.getProdId(),
+				productBean.getProdCat(),productBean.getProdBrand(),
+				productBean.getProdName(),productBean.getProdPrice());
 	}
 
 	@Override
@@ -43,37 +50,49 @@ public class RetailDaoImplement implements RetailDao {
 	}
 
 	@Override
-	public int insertCustomer(CustomerBean cb) {
+	public int insertCustomer(CustomerBean customerBean) {
 		String query = "insert into customers values(?,?,?,?,?)";
-		return template.update(query,cb.getCustId(),cb.getCustEmail(),cb.getCustName(),cb.getCustPass(),cb.getCustPhone());
+		return template.update(query,customerBean.getCustId(),
+				customerBean.getCustEmail(),customerBean.getCustName(),
+				customerBean.getCustPass(),customerBean.getCustPhone());
 	}
 	
+	/**
+	 * Fetching ProductBean rows using RowMapper
+	 * @author Argha Nandan
+	 *
+	 */
 	private class ProductMapper implements RowMapper<ProductBean>
 	{
 
 		@Override
 		public ProductBean mapRow(ResultSet res, int row) throws SQLException {
-			ProductBean pb = new ProductBean(res.getInt(1),
+			ProductBean productBean = new ProductBean(res.getInt(1),
 								res.getString(2),
 								res.getString(3),
 								res.getString(4),
 								res.getDouble(5));
-			return pb;
+			return productBean;
 		}
 		
 	}
 	
+	/**
+	 * Fetching CustomerBean rows using RowMapper
+	 * @author Argha Nandan
+	 *
+	 */
 	private class CustomerMapper implements RowMapper<CustomerBean>
 	{
 
 		@Override
 		public CustomerBean mapRow(ResultSet res, int row) throws SQLException {
-			CustomerBean cb = new CustomerBean(res.getInt(1),
+			CustomerBean customerBean = new CustomerBean(res.getInt(1),
 								res.getString(2),
 								res.getString(3),
 								res.getString(4),
 								res.getString(5));
-			return cb;
+			return customerBean;
 		}
 		
 	}

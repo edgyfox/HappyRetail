@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.happyretail.dao.RetailDao;
 import com.happyretail.model.CustomerBean;
 
+/**
+ * Implements the CustomerService interface
+ * @author Argha Nandan
+ *
+ */
 @Service
 public class CustomerServiceImplement implements CustomerService {
 
@@ -19,8 +24,8 @@ public class CustomerServiceImplement implements CustomerService {
 	}
 
 	@Override
-	public boolean addCustomer(CustomerBean cb) {
-		int success = dao.insertCustomer(cb);
+	public boolean addCustomer(CustomerBean customerBean) {
+		int success = dao.insertCustomer(customerBean);
 		if(success==0)
 		{
 			return false;
