@@ -1,6 +1,11 @@
 package com.happyretail.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,16 +13,36 @@ import org.springframework.web.bind.annotation.RestController;
 import com.happyretail.model.ProductBean;
 import com.happyretail.service.ProductService;
 
+/**
+ * Rest Controller with URI mapping "/rest"
+ * @author Argha Nandan
+ *
+ */
 @RestController
 @RequestMapping(value="/rest")
 public class HappyRetailControllerRest {
 
+	@Autowired
 	ProductService productService;
 	
-	@GetMapping(value="/getContacts")
-	public @ResponseBody ProductBean testRest1()
+	/**
+	 * Return all products
+	 * @return ProductBean List
+	 */
+	@GetMapping(value="/getProducts")
+	public @ResponseBody List<ProductBean> showProducts()
 	{
-		ProductBean productBean = new ProductBean(123, "Mobile", "Asus", "Zenfone", 14999);
-		return productBean;
+		return productService.getProducts();
+	}
+	
+	/**
+	 * Insert new product
+	 * @param productBean
+	 */
+	@PostMapping(value="/addProduct")
+	public @ResponseBody void insertProduct(@RequestBody ProductBean productBean)
+	{
+		System.out.println("InsertProduct started...");
+		productService.insertProduct(productBean);
 	}
 }
