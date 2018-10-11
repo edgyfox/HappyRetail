@@ -25,7 +25,7 @@ public class RetailDaoImplement implements RetailDao {
 	
 	@Override
 	public List<ProductBean> getProducts() {
-		String query = "select * from products;";
+		String query = "select prod_id,prod_brand,prod_name,prod_cat,prod_price from products;";
 		return template.query(query, new ProductMapper()); 
 	}
 
@@ -37,10 +37,10 @@ public class RetailDaoImplement implements RetailDao {
 
 	@Override
 	public int insertProduct(ProductBean productBean) {
-		String query = "insert into products values(?,?,?,?,?);";
+		String query = "insert into products(prod_id,prod_brand,prod_name,prod_cat,prod_price) values(?,?,?,?,?);";
 		return template.update(query, productBean.getProdId(),
-				productBean.getProdCat(),productBean.getProdBrand(),
-				productBean.getProdName(),productBean.getProdPrice());
+				productBean.getProdBrand(),productBean.getProdName(),
+				productBean.getProdCat(),productBean.getProdPrice());
 	}
 
 	@Override
@@ -71,7 +71,8 @@ public class RetailDaoImplement implements RetailDao {
 								res.getString(2),
 								res.getString(3),
 								res.getString(4),
-								res.getDouble(5));
+								res.getString(5),
+								res.getDouble(6));
 			return productBean;
 		}
 		
@@ -91,8 +92,7 @@ public class RetailDaoImplement implements RetailDao {
 								res.getString(2),
 								res.getString(3),
 								res.getString(4),
-								res.getString(5),
-								res.getString(6));
+								res.getString(5));
 			return customerBean;
 		}
 		

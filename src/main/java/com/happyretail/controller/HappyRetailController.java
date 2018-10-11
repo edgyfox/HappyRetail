@@ -1,10 +1,6 @@
 package com.happyretail.controller;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +46,7 @@ public class HappyRetailController {
 	 * @param model
 	 * @return view
 	 */
-	@RequestMapping(value="/showProducts")
+	@RequestMapping(value=RestURIConstants.GET_PRODUCTS)
 	public String redirectToProducts(Model model)
 	{
 		List<ProductBean> products = service.getProducts();
@@ -63,7 +59,7 @@ public class HappyRetailController {
 	 * @param model
 	 * @return view
 	 */
-	@RequestMapping(value="/addProduct")
+	@RequestMapping(value=RestURIConstants.ADD_PRODUCT)
 	public String redirectToNewProductForm(Model model)
 	{
 		model.addAttribute("product", new ProductBean());
@@ -84,7 +80,7 @@ public class HappyRetailController {
 			return "productForm";
 		}
 		service.insertProduct(product);
-		return "redirect:/showProducts";
+		return "redirect:" + RestURIConstants.GET_PRODUCTS;
 	}
 	
 	/**
@@ -92,7 +88,7 @@ public class HappyRetailController {
 	 * @param model
 	 * @return view
 	 */
-	@RequestMapping("/showCustomers")
+	@RequestMapping(value=RestURIConstants.GET_CUSTOMERS)
 	public String redirectToCustomers(Model model)
 	{
 		List<CustomerBean> customers = custService.getCustomers();
@@ -105,7 +101,7 @@ public class HappyRetailController {
 	 * @param model
 	 * @return view
 	 */
-	@RequestMapping("/addCustomer")
+	@RequestMapping(value=RestURIConstants.ADD_CUSTOMER)
 	public String redirectToNewCustomerForm(Model model)
 	{
 		model.addAttribute("customer",new CustomerBean());

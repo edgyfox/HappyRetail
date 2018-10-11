@@ -21,5 +21,5 @@ public interface ProductService {
 	 * @param productBean
 	 * @return insertion status
 	 */
-	boolean insertProduct(ProductBean productBean);
+	void insertProduct(ProductBean productBean);
 }

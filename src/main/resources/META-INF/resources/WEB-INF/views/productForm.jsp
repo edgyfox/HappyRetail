@@ -24,22 +24,32 @@
 			<div class="form-group">
 			<form:label path="prodId">ID: </form:label>
 			<form:input path="prodId" class="form-control"/>
+			<small><form:errors path="prodId" cssClass="text-danger"></form:errors></small>
 			</div>
 			<div class="form-group">
 			<form:label path="prodBrand">Brand: </form:label>
 			<form:input path="prodBrand" class="form-control"/>
-			</div>
-			<div class="form-group">
-			<form:label path="prodCat">Category: </form:label>
-			<form:input path="prodCat" class="form-control"/>
+			<small><form:errors path="prodBrand" cssClass="text-danger"></form:errors></small>
 			</div>
 			<div class="form-group">
 			<form:label path="prodName">Name: </form:label>
 			<form:input path="prodName" class="form-control"/>
+			<small><form:errors path="prodName" cssClass="text-danger"></form:errors></small>
+			</div>
+			<div class="form-group">
+			<form:label path="prodCat">Category: </form:label>
+			<form:input path="prodCat" class="form-control"/>
+			<small><form:errors path="prodCat" cssClass="text-danger"></form:errors></small>
+			</div>
+			<div class="form-group">
+			<form:label path="prodGender">Gender: </form:label>
+			<form:input path="prodGender" class="form-control"/>
+			<small><form:errors path="prodGender" cssClass="text-danger"></form:errors></small>
 			</div>
 			<div class="form-group">
 			<form:label path="prodPrice">Price: </form:label>
 			<form:input path="prodPrice" class="form-control"/>
+			<small><form:errors path="prodPrice" cssClass="text-danger"></form:errors></small>
 			</div>
 			<input type="submit" value="Insert Product" class="btn btn-primary">
 		</form:form>

@@ -15,13 +15,12 @@ public interface CustomerService {
 	 * @return CustomerBean List
 	 */
 	List<CustomerBean> getCustomers();
-	List<CustomerBean> getRepositoryCustomers();
+	
 	/**
 	 * Add Customerbean to DB
 	 * @param customerBean
 	 * @return success status
 	 */
 	boolean addCustomer(CustomerBean customerBean);
-	void addRepositoryCustomer(CustomerBean customerBean);
 
 }
