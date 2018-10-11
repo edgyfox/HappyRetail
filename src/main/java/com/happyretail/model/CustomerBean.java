@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 @Table(name="customers")
 public class CustomerBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="custId")
 	private int custId;
 	
@@ -37,27 +38,17 @@ public class CustomerBean {
 	@Column(name="custPhone")
 	private String custPhone;
 	
-	@NotNull(message="Field should not be empty")
-	@Column(name="custGender")
-	private String custGender;
-	
 	public CustomerBean()
 	{
 		
 	}
-	
-	public CustomerBean(int custId,
-			@NotNull(message = "Field should not be empty") @Size(min = 2, message = "Name should have at least two characters") String custName,
-			@NotNull(message = "Field should not be empty") @Pattern(regexp = "\\w+@\\w+\\.\\w+", message = "Email is invalid") String custEmail,
-			@NotNull(message = "Field should not be empty") @Size(min = 6, message = "Password should have at least six characters") String custPass,
-			@NotNull(message = "Field should not be empty") @Size(min = 10, message = "Phone number should have at least 10 digits") String custPhone,
-			@NotNull(message = "Field should not be empty") String custGender) {
+	public CustomerBean(int custId, String custEmail, String custName, String custPass, String custPhone) {
+		super();
 		this.custId = custId;
 		this.custName = custName;
 		this.custEmail = custEmail;
 		this.custPass = custPass;
 		this.custPhone = custPhone;
-		this.custGender = custGender;
 	}
 	public int getCustId() {
 		return custId;
@@ -89,11 +80,5 @@ public class CustomerBean {
 	public void setCustPhone(String custPhone) {
 		this.custPhone = custPhone;
 	}
-	public String getCustGender() {
-		return custGender;
-	}
-	public void setCustGender(String custGender) {
-		this.custGender = custGender;
-	}
-	
+
 }
