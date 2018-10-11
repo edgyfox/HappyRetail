@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.happyretail.model.CustomerBean;
 import com.happyretail.model.ProductBean;
+import com.happyretail.service.CustomerService;
 import com.happyretail.service.ProductService;
 
 /**
@@ -24,6 +26,9 @@ public class HappyRetailControllerRest {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CustomerService customerService;
 	
 	/**
 	 * Return all products
@@ -44,5 +49,21 @@ public class HappyRetailControllerRest {
 	{
 		System.out.println("InsertProduct started...");
 		productService.insertProduct(productBean);
+	}
+	
+	/**
+	 * Return all customers
+	 * @return CustomerBean List
+	 */
+	@GetMapping(value="/getCustomers")
+	public @ResponseBody List<CustomerBean> showCustomers()
+	{
+		return customerService.getRepositoryCustomers();
+	}
+	
+	@PostMapping(value="/addCustomer")
+	public @ResponseBody void insertCustomer(@RequestBody CustomerBean customerBean)
+	{
+		customerService.addRepositoryCustomer(customerBean);
 	}
 }
