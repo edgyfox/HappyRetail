@@ -7,9 +7,9 @@
 </head>
 <body>
 	<h1>Welcome!</h1>
-	<a href="showProducts">Show Products</a>
+	<a href="getProducts">Show Products</a>
 	<a href="addProduct">Add New Product</a><br/>
-	<a href="showCustomers">Show Customers</a>
+	<a href="getCustomers">Show Customers</a>
 	<a href="addCustomer">Add New Customer</a>
 </body>
 </html>

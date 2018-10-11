@@ -67,7 +67,7 @@ public class HappyRetailController {
 	}
 	
 	/**
-	 * Read product form and insert into DB, redirect to "/showProducts" URI.
+	 * Read product form and insert into DB, redirect to "/getProducts" URI.
 	 * @param product
 	 * @param model
 	 * @return view
@@ -109,7 +109,7 @@ public class HappyRetailController {
 	}
 	
 	/**
-	 * read customer form and redirect to "/showCustomer" URI.
+	 * read customer form and redirect to "/getCustomers" URI.
 	 * Parameteres: CustomerBean object, Model object.
 	 * Returns: ModelAndView.
 	 */
@@ -117,6 +117,6 @@ public class HappyRetailController {
 	public ModelAndView readAndShowCustomers(@ModelAttribute("customer") CustomerBean customer, Model model)
 	{
 		custService.addCustomer(customer);
-		return new ModelAndView("redirect:/showCustomers","model",model);
+		return new ModelAndView("redirect:" + RestURIConstants.GET_CUSTOMERS,"model",model);
 	}
 }
