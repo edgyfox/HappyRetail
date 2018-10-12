@@ -101,13 +101,13 @@ public class HappyRetailControllerRest {
 	@GetMapping(value=RestURIConstants.GET_CUSTOMERS)
 	public @ResponseBody List<CustomerBean> showCustomers()
 	{
-		return customerService.getCustomers();
+		return customerService.getRepositoryCustomers();
 	}
 	
 	@PostMapping(value=RestURIConstants.ADD_CUSTOMER)
 	public @ResponseBody void insertCustomer(@RequestBody CustomerBean customerBean)
 	{
 		System.out.println("Inserting new customer...");
-		customerService.addCustomer(customerBean);
+		customerService.addRepositoryCustomer(customerBean);
 	}
 }
