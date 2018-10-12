@@ -31,7 +31,7 @@ public class RetailDaoImplement implements RetailDao {
 
 	@Override
 	public ProductBean getProductById(ProductBean productBean) {
-		// TODO Auto-generated method stub
+		// auto-generated
 		return null;
 	}
 
@@ -92,8 +92,7 @@ public class RetailDaoImplement implements RetailDao {
 								res.getString(2),
 								res.getString(3),
 								res.getString(4),
-								res.getString(5),
-								res.getString(6));
+								res.getString(5));
 			return customerBean;
 		}
 		

@@ -35,21 +35,31 @@ public class ProductServiceImplement implements ProductService {
 	public void insertProduct(ProductBean productBean) {
 		productRepository.save(productBean);
 	}
-	
-	/*@Override
-	public List<ProductBean> getProducts() {
-		return dao.getProducts();
+
+	@Override
+	public ProductBean getProductById(ProductBean productBean) {
+		ProductBean product = productRepository.findById(productBean.getProdId());
+		return product;		
 	}
 
 	@Override
-	public boolean insertProduct(ProductBean productBean) {
-		int success = dao.insertProduct(productBean);
-		if(success==0)
-			return false;
-		else
-			return true;
+	public ArrayList<ProductBean> getProductByName(ProductBean productBean) {
+		ArrayList<ProductBean> products = new ArrayList<>();
+		productRepository.findByName(productBean.getProdName()).forEach(product -> products.add(product));
+		return products;
 	}
-	
-	
-*/
+
+	@Override
+	public ArrayList<ProductBean> getProductByCat(ProductBean productBean) {
+		ArrayList<ProductBean> products = new ArrayList<>();
+		productRepository.findByCat(productBean.getProdCat()).forEach(product -> products.add(product));
+		return products;
+	}
+
+	@Override
+	public ArrayList<ProductBean> getProductByGender(ProductBean productBean) {
+		ArrayList<ProductBean> products = new ArrayList<>();
+		productRepository.findByGender(productBean.getProdGender()).forEach(product -> products.add(product));
+		return products;
+	}
 }

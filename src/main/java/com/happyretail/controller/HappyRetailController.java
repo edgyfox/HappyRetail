@@ -22,7 +22,8 @@ import com.happyretail.service.ProductService;
  * @author Argha Nandan
  *
  */
-@Controller("/")
+@Controller
+@RequestMapping("/")
 public class HappyRetailController {
 	
 	@Autowired
