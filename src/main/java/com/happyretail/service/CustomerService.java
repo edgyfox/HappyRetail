@@ -22,5 +22,9 @@ public interface CustomerService {
 	 * @return success status
 	 */
 	boolean addCustomer(CustomerBean customerBean);
+	
+	List<CustomerBean> getRepositoryCustomers();
+	
+	void addRepositoryCustomer(CustomerBean customerBean);
 
 }
