@@ -19,6 +19,9 @@ public class CustomerServiceImplement implements CustomerService {
 	@Autowired
 	RetailDao dao;
 	
+	@Autowired
+	CustomerRepository customerRepository;
+	
 	@Override
 	public List<CustomerBean> getCustomers() {
 		return dao.getCustomers();
@@ -37,4 +40,16 @@ public class CustomerServiceImplement implements CustomerService {
 		}
 	}
 
+	@Override
+	public List<CustomerBean> getRepositoryCustomers() {
+		List<CustomerBean> customers = new ArrayList<CustomerBean>();
+		customerRepository.findAll().forEach(customers::add);
+		return customers;
+	}
+
+	@Override
+	public void addRepositoryCustomer(CustomerBean customerBean) {
+		customerRepository.save(customerBean);
+		
+	}
 }
