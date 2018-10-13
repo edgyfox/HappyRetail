@@ -38,17 +38,22 @@ public class CustomerBean {
 	@Column(name="custPhone")
 	private String custPhone;
 	
+	@NotNull(message="Field should not be empty")
+	@Column(name="custGender")
+	private String custGender;
+	
 	public CustomerBean()
 	{
 		
 	}
-	public CustomerBean(int custId, String custEmail, String custName, String custPass, String custPhone) {
+	public CustomerBean(int custId, String custEmail, String custName, String custPass, String custPhone, String custGender) {
 		super();
 		this.custId = custId;
 		this.custName = custName;
 		this.custEmail = custEmail;
 		this.custPass = custPass;
 		this.custPhone = custPhone;
+		this.custGender = custGender;
 	}
 	public int getCustId() {
 		return custId;
@@ -79,6 +84,12 @@ public class CustomerBean {
 	}
 	public void setCustPhone(String custPhone) {
 		this.custPhone = custPhone;
+	}
+	public String getCustGender() {
+		return custGender;
+	}
+	public void setCustGender(String custGender) {
+		this.custGender = custGender;
 	}
 
 }

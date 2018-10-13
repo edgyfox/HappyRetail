@@ -4,32 +4,34 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="products")
 public class ProductBean {
+	
 	@Id
 	@Column(name="prodId")
 	private int prodId;
 	
-	@NotNull(message="Field should not be empty")
+	@Size(min=1,message="Field should not be empty!")
 	@Column(name="prodName")
 	private String prodName;
 	
-	@NotNull(message="Field should not be empty")
+	@Size(min=1,message="Field should not be empty!")
 	@Column(name="prodBrand")
 	private String prodBrand;
 	
-	@NotNull(message="Field should not be empty")
+	@Size(min=1,message="Field should not be empty!")
 	@Column(name="prodCat")
 	private String prodCat;
 	
-	@NotNull(message="Field should not be empty")
+	@Size(min=1,message="Field should not be empty!")
 	@Column(name="prodGender")
 	private String prodGender;
 	
-	@NotNull(message="Field should not be empty")
+	@DecimalMin(value="0.0",message="Should not be negative!")
 	@Column(name="prodPrice")
 	private double prodPrice;
 	

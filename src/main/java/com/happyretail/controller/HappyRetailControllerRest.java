@@ -2,15 +2,14 @@ package com.happyretail.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +17,8 @@ import com.happyretail.model.CustomerBean;
 import com.happyretail.model.ProductBean;
 import com.happyretail.service.CustomerService;
 import com.happyretail.service.ProductService;
+import com.happyretail.util.ErrorMessage;
+import com.happyretail.util.PriceRange;
 
 /**
  * Rest Controller with URI mapping "/rest"
@@ -39,9 +40,14 @@ public class HappyRetailControllerRest {
 	 * @return ProductBean List
 	 */
 	@GetMapping(value=RestURIConstants.GET_PRODUCTS)
-	public @ResponseBody List<ProductBean> showProducts()
+	public @ResponseBody ResponseEntity<List<ProductBean>> showProducts()
 	{
-		return productService.getProducts();
+		List<ProductBean> products = productService.getProducts();
+		if(products.isEmpty())
+		{
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<ProductBean>>(products, HttpStatus.OK);
 	}
 	
 	/**
@@ -51,8 +57,20 @@ public class HappyRetailControllerRest {
 	@PostMapping(value=RestURIConstants.ADD_PRODUCT)
 	public @ResponseBody void insertProduct(@RequestBody ProductBean productBean)
 	{
-		System.out.println("Insert new product...");
 		productService.insertProduct(productBean);
+	}
+	
+	/**
+	 * Insert multiple products
+	 * @param productBeans
+	 */
+	@PostMapping(value=RestURIConstants.ADD_LIST_OF_PRODUCTS)
+	public @ResponseBody void insertListOfProducts(@RequestBody List<ProductBean> productBeans)
+	{
+		for(int i=0;i<productBeans.size();i++)
+		{
+			this.insertProduct(productBeans.get(i));
+		}
 	}
 	
 	/**
@@ -95,6 +113,47 @@ public class HappyRetailControllerRest {
 	}
 	
 	/**
+	 * Return products by price range
+	 * @param range
+	 * @return ProductBean List
+	 */
+	@PostMapping(value=RestURIConstants.GET_PRODUCTS_BY_PRICE)
+	public @ResponseBody List<ProductBean> showProductsByPrice(@RequestBody PriceRange range)
+	{
+		return productService.getProductsByPrice(range.getMaxRange(), range.getMinRange());
+	}
+	
+	/**
+	 * Return products sorted by name
+	 * @return ProductBean List
+	 */
+	@GetMapping(value=RestURIConstants.SORT_PRODUCTS_BY_NAME)
+	public @ResponseBody List<ProductBean> sortProductsByName()
+	{
+		return productService.sortProductsByName();
+	}
+	
+	/**
+	 * Return products sorted by brand
+	 * @return ProductBean List
+	 */
+	@GetMapping(value=RestURIConstants.SORT_PRODUCTS_BY_BRAND)
+	public @ResponseBody List<ProductBean> sortProductsByBrand()
+	{
+		return productService.sortProductsByBrand();
+	}
+	
+	/**
+	 * Return products sorted by price
+	 * @return ProductBean List
+	 */
+	@GetMapping(value=RestURIConstants.SORT_PRODUCTS_BY_PRICE)
+	public @ResponseBody List<ProductBean> sortProductsByPrice()
+	{
+		return productService.sortProductsByPrice();
+	}
+	
+	/**
 	 * Return all customers
 	 * @return CustomerBean List
 	 */
@@ -104,10 +163,13 @@ public class HappyRetailControllerRest {
 		return customerService.getRepositoryCustomers();
 	}
 	
+	/**
+	 * Insert a customer
+	 * @param customerBean
+	 */
 	@PostMapping(value=RestURIConstants.ADD_CUSTOMER)
 	public @ResponseBody void insertCustomer(@RequestBody CustomerBean customerBean)
 	{
-		System.out.println("Inserting new customer...");
 		customerService.addRepositoryCustomer(customerBean);
 	}
 }

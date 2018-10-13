@@ -62,4 +62,32 @@ public class ProductServiceImplement implements ProductService {
 		productRepository.findByGender(productBean.getProdGender()).forEach(product -> products.add(product));
 		return products;
 	}
+
+	@Override
+	public ArrayList<ProductBean> getProductsByPrice(double price1, double price2) {
+		ArrayList<ProductBean> products = new ArrayList<>();
+		productRepository.findByPrice(price1, price2).forEach(product -> products.add(product));
+		return products;
+	}
+
+	@Override
+	public ArrayList<ProductBean> sortProductsByName() {
+		ArrayList<ProductBean> products = new ArrayList<>();
+		productRepository.sortByName().forEach(product -> products.add(product));
+		return products;
+	}
+
+	@Override
+	public ArrayList<ProductBean> sortProductsByBrand() {
+		ArrayList<ProductBean> products = new ArrayList<>();
+		productRepository.sortByBrand().forEach(product -> products.add(product));
+		return products;
+	}
+	
+	@Override
+	public ArrayList<ProductBean> sortProductsByPrice() {
+		ArrayList<ProductBean> products = new ArrayList<>();
+		productRepository.sortByPrice().forEach(product -> products.add(product));
+		return products;
+	}
 }

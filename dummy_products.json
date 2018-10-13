@@ -1,0 +1,154 @@
+[
+    {
+        "prodId": 1,
+        "prodName": "Red Tshirt",
+        "prodBrand": "Mufti",
+        "prodCat": "Tshirt",
+        "prodGender": "Men",
+        "prodPrice": 999
+    },
+    {
+        "prodId": 2,
+        "prodName": "Checkered Regular Fit Casual Shirt",
+        "prodBrand": "House & Shields",
+        "prodCat": "Shirt",
+        "prodGender": "Men",
+        "prodPrice": 1499
+    },
+    {
+        "prodId": 3,
+        "prodName": "Men's Plain Slim Fit Cotton Casual Shirt",
+        "prodBrand": "Van Heusen",
+        "prodCat": "Shirt",
+        "prodGender": "Men",
+        "prodPrice": 799
+    },
+    {
+        "prodId": 4,
+        "prodName": "Men's Polo",
+        "prodBrand": "Marco Polo",
+        "prodCat": "Tshirt",
+        "prodGender": "Men",
+        "prodPrice": 499
+    },
+    {
+        "prodId": 6,
+        "prodName": "Men's Slim Fit Casual Trouserso",
+        "prodBrand": "Van Heusen",
+        "prodCat": "Trouser",
+        "prodGender": "Men",
+        "prodPrice": 899
+    },
+    {
+        "prodId": 7,
+        "prodName": "Men's Striped Regular Fit Polo",
+        "prodBrand": "UCB",
+        "prodCat": "Tshirt",
+        "prodGender": "Men",
+        "prodPrice": 1299
+    },
+    {
+        "prodId": 8,
+        "prodName": "Men's Solid Regular Fit Polo",
+        "prodBrand": "Mufti",
+        "prodCat": "Tshirt",
+        "prodGender": "Men",
+        "prodPrice": 799
+    },
+    {
+        "prodId": 9,
+        "prodName": "Men's Tapered Fit Cotton Casual Trousers",
+        "prodBrand": "Arrow",
+        "prodCat": "Trouser",
+        "prodGender": "Men",
+        "prodPrice": 1299
+    },
+    {
+        "prodId": 10,
+        "prodName": "Men's Slim Fit Jeans",
+        "prodBrand": "Red Tape",
+        "prodCat": "Jeans",
+        "prodGender": "Men",
+        "prodPrice": 1374
+    },
+    {
+        "prodId": 11,
+        "prodName": "Men's Black Slim Fit Stretchable Jeans",
+        "prodBrand": "Red Tape",
+        "prodCat": "Jeans",
+        "prodGender": "Men",
+        "prodPrice": 1732
+    },
+    {
+        "prodId": 12,
+        "prodName": "Men's Regular Fit Denim Jeans",
+        "prodBrand": "Urbano",
+        "prodCat": "Jeans",
+        "prodGender": "Men",
+        "prodPrice": 2939
+    },
+    {
+        "prodId": 14,
+        "prodName": "Men's Slim Fit Black Stretchable Jeans",
+        "prodBrand": "Urbano",
+        "prodCat": "Jeans",
+        "prodGender": "Men",
+        "prodPrice": 3451
+    },
+    {
+        "prodId": 13,
+        "prodName": " Men's Regular Fit Denim Jeans",
+        "prodBrand": "Ben Martin",
+        "prodCat": "Jeans",
+        "prodGender": "Men",
+        "prodPrice": 1909
+    },
+    {
+        "prodId": 15,
+        "prodName": "Cotton Round Neck T-Shirts",
+        "prodBrand": "Symbol",
+        "prodCat": "Tshirt",
+        "prodGender": "Men",
+        "prodPrice": 599
+    },
+    {
+        "prodId": 16,
+        "prodName": "Collared Printed Top ",
+        "prodBrand": "Shoppers Stop",
+        "prodCat": "Top",
+        "prodGender": "Women",
+        "prodPrice": 569
+    },
+    {
+        "prodId": 17,
+        "prodName": "Women's Striped Loose Fit Shirt  ",
+        "prodBrand": "GAP",
+        "prodCat": "Shirt",
+        "prodGender": "Women",
+        "prodPrice": 1799
+    },
+    {
+        "prodId": 19,
+        "prodName": "Women's  V-neck logo floral t-shirt ",
+        "prodBrand": "GAP",
+        "prodCat": "Tshirt",
+        "prodGender": "Women",
+        "prodPrice": 799
+    },
+    {
+        "prodId": 20,
+        "prodName": "Striped Regular Fit Cotton Top  ",
+        "prodBrand": "AND",
+        "prodCat": "Top",
+        "prodGender": "Women",
+        "prodPrice": 1283
+    },
+    {
+        "prodId": 18,
+        "prodName": "Women's Body Blouse Shirt  ",
+        "prodBrand": "AND",
+        "prodCat": "Shirt",
+        "prodGender": "Women",
+        "prodPrice": 599
+    }
+]
