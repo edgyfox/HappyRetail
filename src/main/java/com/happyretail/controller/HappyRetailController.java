@@ -76,8 +76,10 @@ public class HappyRetailController {
 	@PostMapping(value="/readForm")
 	public String readAndShowProducts(@Valid@ModelAttribute("product") ProductBean product,Model model, Errors errs)
 	{
+		System.out.println("FUNCTION");
 		if(errs.hasErrors())
 		{
+			System.out.println("ERRORS");
 			return "productForm";
 		}
 		service.insertProduct(product);
@@ -92,7 +94,7 @@ public class HappyRetailController {
 	@RequestMapping(value=RestURIConstants.GET_CUSTOMERS)
 	public String redirectToCustomers(Model model)
 	{
-		List<CustomerBean> customers = custService.getCustomers();
+		List<CustomerBean> customers = custService.getRepositoryCustomers();
 		model.addAttribute("customers", customers);
 		return "showCustomers";
 	}
@@ -111,13 +113,13 @@ public class HappyRetailController {
 	
 	/**
 	 * read customer form and redirect to "/getCustomers" URI.
-	 * Parameteres: CustomerBean object, Model object.
+	 * Parameters: CustomerBean object, Model object.
 	 * Returns: ModelAndView.
 	 */
 	@RequestMapping("/readCustomerForm")
 	public ModelAndView readAndShowCustomers(@ModelAttribute("customer") CustomerBean customer, Model model)
 	{
-		custService.addCustomer(customer);
+		custService.addRepositoryCustomer(customer);
 		return new ModelAndView("redirect:" + RestURIConstants.GET_CUSTOMERS,"model",model);
 	}
 }

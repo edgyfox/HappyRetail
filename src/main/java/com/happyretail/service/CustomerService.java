@@ -10,17 +10,9 @@ import com.happyretail.model.CustomerBean;
  *
  */
 public interface CustomerService {
-	/**
-	 * Fetch all customers
-	 * @return CustomerBean List
-	 */
-	List<CustomerBean> getCustomers();
-	
-	/**
-	 * Add Customerbean to DB
-	 * @param customerBean
-	 * @return success status
-	 */
-	boolean addCustomer(CustomerBean customerBean);
+
+	List<CustomerBean> getRepositoryCustomers();
+
+	void addRepositoryCustomer(CustomerBean customerBean);
 
 }
