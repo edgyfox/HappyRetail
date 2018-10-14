@@ -16,6 +16,7 @@ import com.happyretail.model.CustomerBean;
 import com.happyretail.model.ProductBean;
 import com.happyretail.service.CustomerService;
 import com.happyretail.service.ProductService;
+import com.happyretail.util.Credentials;
 
 /**
  * Default-controller with URI mapping = "/"
@@ -121,5 +122,22 @@ public class HappyRetailController {
 	{
 		custService.addRepositoryCustomer(customer);
 		return new ModelAndView("redirect:" + RestURIConstants.GET_CUSTOMERS,"model",model);
+	}
+	
+	@RequestMapping(value="/showLoginForm")
+	public String showLoginForm(Model model)
+	{
+		model.addAttribute("credentials", new Credentials());
+		return "loginForm";
+	}
+	
+	@PostMapping(value="/readCredentials")
+	public String readCredentials(@ModelAttribute("credentials") Credentials credentials, Model model)
+	{
+		if(custService.exists(credentials))
+		{
+			return "index";
+		}
+		return "loginForm";
 	}
 }

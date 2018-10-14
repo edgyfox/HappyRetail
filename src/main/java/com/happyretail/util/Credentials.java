@@ -4,6 +4,7 @@ public class Credentials {
 
 	private String username;
 	private String password;
+	public Credentials() {}
 	public Credentials(String username, String password) {
 		super();
 		this.username = username;
