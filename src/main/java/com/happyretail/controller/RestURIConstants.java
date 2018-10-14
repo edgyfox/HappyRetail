@@ -18,5 +18,7 @@ public class RestURIConstants {
 	
 	public static final String GET_CUSTOMERS = "/getCustomers";
 	public static final String ADD_CUSTOMER = "/addCustomer";
+	public static final String LOGIN = "/login";
+	public static final String REGISTER = "/register";
 	
 }

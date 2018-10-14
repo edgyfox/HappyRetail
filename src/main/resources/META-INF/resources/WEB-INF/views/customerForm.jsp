@@ -35,11 +35,15 @@
 			</div>
 			<div class="form-group">
 			<form:label path="custPass">Password: </form:label>
-			<form:input path="custPass" class="form-control"/>
+			<form:password path="custPass" class="form-control"/>
 			</div>
 			<div class="form-group">
-			<form:label path="custPhone">phone: </form:label>
+			<form:label path="custPhone">Phone: </form:label>
 			<form:input path="custPhone" class="form-control"/>
+			</div>
+			<div class="form-group">
+			<form:label path="custGender">Gender: </form:label>
+			<form:input path="custGender" class="form-control"/>
 			</div>
 			<input type="submit" value="Insert Customer" class="btn btn-primary">
 		</form:form>

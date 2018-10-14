@@ -2,6 +2,8 @@ package com.happyretail.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import com.happyretail.model.CustomerBean;
 import com.happyretail.model.ProductBean;
 import com.happyretail.service.CustomerService;
 import com.happyretail.service.ProductService;
+import com.happyretail.util.Credentials;
 import com.happyretail.util.ErrorMessage;
 import com.happyretail.util.PriceRange;
 
@@ -34,6 +37,8 @@ public class HappyRetailControllerRest {
 	
 	@Autowired
 	CustomerService customerService;
+	
+	public static final Logger logger = LoggerFactory.getLogger(HappyRetailControllerRest.class);
 	
 	/**
 	 * Return all products
@@ -120,6 +125,7 @@ public class HappyRetailControllerRest {
 	@PostMapping(value=RestURIConstants.GET_PRODUCTS_BY_PRICE)
 	public @ResponseBody List<ProductBean> showProductsByPrice(@RequestBody PriceRange range)
 	{
+		logger.info("Fetching products by price range.");
 		return productService.getProductsByPrice(range.getMaxRange(), range.getMinRange());
 	}
 	
@@ -130,6 +136,7 @@ public class HappyRetailControllerRest {
 	@GetMapping(value=RestURIConstants.SORT_PRODUCTS_BY_NAME)
 	public @ResponseBody List<ProductBean> sortProductsByName()
 	{
+		logger.info("Sorting products by name.");
 		return productService.sortProductsByName();
 	}
 	
@@ -140,6 +147,7 @@ public class HappyRetailControllerRest {
 	@GetMapping(value=RestURIConstants.SORT_PRODUCTS_BY_BRAND)
 	public @ResponseBody List<ProductBean> sortProductsByBrand()
 	{
+		logger.info("Sorting products by brand.");
 		return productService.sortProductsByBrand();
 	}
 	
@@ -150,6 +158,7 @@ public class HappyRetailControllerRest {
 	@GetMapping(value=RestURIConstants.SORT_PRODUCTS_BY_PRICE)
 	public @ResponseBody List<ProductBean> sortProductsByPrice()
 	{
+		logger.info("Sorting products by price.");
 		return productService.sortProductsByPrice();
 	}
 	
@@ -160,6 +169,7 @@ public class HappyRetailControllerRest {
 	@GetMapping(value=RestURIConstants.GET_CUSTOMERS)
 	public @ResponseBody List<CustomerBean> showCustomers()
 	{
+		logger.info("Fetching customers.");
 		return customerService.getRepositoryCustomers();
 	}
 	
@@ -171,5 +181,42 @@ public class HappyRetailControllerRest {
 	public @ResponseBody void insertCustomer(@RequestBody CustomerBean customerBean)
 	{
 		customerService.addRepositoryCustomer(customerBean);
+	}
+	
+	/**
+	 * Login customer
+	 * @param credentials
+	 * @return HttpStatus
+	 */
+	@PostMapping(value=RestURIConstants.LOGIN)
+	public @ResponseBody ResponseEntity<ErrorMessage> loginCustomer(@RequestBody Credentials credentials)
+	{
+		if(!customerService.exists(credentials))
+		{
+			logger.error("Customer does not exist.");
+			logger.info(credentials.toString());
+			return new ResponseEntity<ErrorMessage>(new ErrorMessage("Customer does not exist!"),HttpStatus.OK);
+		}
+		logger.info(credentials.getUsername() + " logged in.");
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	/**
+	 * Register customer
+	 * @param customerBean
+	 * @return HttpStatus
+	 */
+	@PostMapping(value=RestURIConstants.REGISTER)
+	public @ResponseBody ResponseEntity<ErrorMessage> registerCustomer(@RequestBody CustomerBean customerBean)
+	{
+		Credentials credentials = new Credentials(customerBean.getCustEmail(), customerBean.getCustPass());
+		if(customerService.exists(credentials))
+		{
+			logger.error("Customer already exists.");
+			return new ResponseEntity<ErrorMessage>(new ErrorMessage("Customer already exists!"),HttpStatus.CONFLICT);
+		}
+		this.insertCustomer(customerBean);
+		logger.info(customerBean.getCustEmail() + " inserted.");
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
