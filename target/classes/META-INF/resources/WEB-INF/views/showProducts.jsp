@@ -18,6 +18,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<c:import url="navbar.jsp"></c:import>
 	<table class="table table-striped table-bordered">
 		<tr>
 			<th>ID</th>
